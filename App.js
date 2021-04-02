@@ -3,33 +3,39 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-function HomeScreen() {
+import playersReducer from './store/reducers/PlayersReducer';
+import PlayersScreen from './screens/PlayersScreen';
+import CardsScreen from './screens/CardsScreen';
+
+function Players() {
   return (
-    <View style={styles.container}>
-      <Text>Home!</Text>
-    </View>
+    <PlayersScreen/>
   );
 }
 
-function SettingsScreen() {
+function Cards() {
   return (
-    <View style={styles.container}>
-      <Text>Settings!</Text>
-    </View>
+    <CardsScreen/>
   );
 }
 
 const Tab = createBottomTabNavigator();
 
+const store = createStore(playersReducer);
+
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Joueurs" component={Players} />
+          <Tab.Screen name="Cartes" component={Cards} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
