@@ -3,6 +3,7 @@ import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { nextCard, disableCard } from '../../store/actions/CardsAction';
+import * as Speech from 'expo-speech';
 
 class CardsVisualisation extends React.Component {
   constructor(props){
@@ -18,6 +19,7 @@ class CardsVisualisation extends React.Component {
     this.props.nextCard()
     setTimeout( () => {
       this.setState({imgSrc: this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['src']})
+      Speech.speak(this.props.playersReducer.players[Math.floor(Math.random()*this.props.playersReducer.players.length)] + this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['rule']);
     }, 500);
   }
 
@@ -45,8 +47,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  const { cardsReducer } = state
-  return { cardsReducer }
+  const { cardsReducer, playersReducer } = state
+  return { cardsReducer, playersReducer }
 };
 
 const mapDispatchToProps = dispatch => (
