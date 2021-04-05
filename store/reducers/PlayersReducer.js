@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 const INITIAL_STATE = {
   players: []
 };
@@ -16,7 +14,9 @@ const playersReducer = (state = INITIAL_STATE, action) => {
     case 'ADD_PLAYER':
       newState = {...state}
 
-      newState.players.push(action.payload)
+      if (action.payload.length) {
+        newState.players.push(action.payload)
+      }
 
       return newState;
 
@@ -25,6 +25,4 @@ const playersReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default combineReducers({
-    players: playersReducer
-});
+export default playersReducer;

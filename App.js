@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import playersReducer from './store/reducers/PlayersReducer';
+import allReducer from './store/reducers'
 import PlayersScreen from './screens/PlayersScreen';
 import CardsScreen from './screens/CardsScreen';
 
@@ -24,7 +24,7 @@ function Cards() {
 
 const Tab = createBottomTabNavigator();
 
-const store = createStore(playersReducer);
+const store = createStore(allReducer);
 
 export default function App() {
   return (

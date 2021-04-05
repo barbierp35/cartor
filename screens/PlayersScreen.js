@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { dumpPlayers } from '../store/actions/PlayersAction';
@@ -10,7 +10,7 @@ class PlayersScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{ this.props.players.players.length } Joueurs</Text>
+        <Text>{ this.props.playersReducer.players.length } Joueurs</Text>
         <PlayersList/>
         <InputNewPlayer/>
         <TouchableOpacity
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  const { players } = state
-  return { players }
+  const { playersReducer } = state
+  return { playersReducer }
 };
 const mapDispatchToProps = dispatch => (
   bindActionCreators({

@@ -6,7 +6,7 @@ class PlayersList extends React.Component {
   render() {
     return (
       <View>
-        {this.props.players.players.map((element, index) => (
+        {this.props.playersReducer.players.map((element, index) => (
           <TextInput
             key={index}
             style={styles.input}
@@ -19,18 +19,12 @@ class PlayersList extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
 
 
 const mapStateToProps = (state) => {
-  const { players } = state
-  return { players }
+  const { playersReducer } = state
+  return { playersReducer }
 };
 
 export default connect(mapStateToProps)(PlayersList);

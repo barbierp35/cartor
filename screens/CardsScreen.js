@@ -1,12 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { mixCards } from '../store/actions/CardsAction';
+import CardsVisualisation from '../components/Cards/CardsVisualisation';
 
 class CardsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>List cards</Text>
+        <CardsVisualisation/>
       </View>
     );
   }
@@ -21,5 +24,14 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = (state) => {
+  const { cardssReducer } = state
+  return { cardssReducer }
+};
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    mixCards
+  }, dispatch)
+);
 
-export default CardsScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(CardsScreen);
