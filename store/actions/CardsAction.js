@@ -1,9 +1,3 @@
-export const mixCards = () => (
-  {
-    type: 'MIX_CARDS'
-  }
-);
-
 export const disableCard = slugCard => (
   {
     type: 'DISABLE_CARD',

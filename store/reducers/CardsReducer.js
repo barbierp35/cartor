@@ -287,29 +287,13 @@ const INITIAL_STATE = {
       rule: ' doit dire si c\'est le 1, 2, 3 ou 4ème roi de sortie. S\'il se trompe, c\'est une gorgée. Si c\'est le 4ème roi, c\'est cul sec !',
       src: require('../../assets/cards/KS.png'),
       active: true
-    },
+    }
   },
   showedCard: null
 };
 
 const cardsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'MIX_CARDS':
-      newState = {...state}
-
-      var currentIndex = newState.cards.length, temporaryValue, randomIndex;
-
-      while (0 !== currentIndex) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        
-        temporaryValue = array[currentIndex];
-        newState.cards[currentIndex] = newState.cards[randomIndex];
-        newState.cards[randomIndex] = temporaryValue;
-      }
-
-      return newState;
-
     case 'DISABLE_CARD':
       newState = {...state}
 
@@ -322,12 +306,20 @@ const cardsReducer = (state = INITIAL_STATE, action) => {
     case 'NEXT_CARD':
       newState = {...state}
 
-      for (let slug in newState.cards){
-        if (newState.cards[slug].active == true) {
-          newState.showedCard = slug;
+      let listKeysCards = Object.keys(newState.cards)
+      let i = 0;
+
+      do {
+        i = i + 1;
+        let randomCardSlug = listKeysCards[Math.floor(Math.random() * listKeysCards.length)]
+
+        if (newState.cards[randomCardSlug].active == true) {
+          newState.showedCard = randomCardSlug;
           return newState
         }
-      }
+      } while (i < Object.keys(newState.cards).length)
+
+      // TODO : Remettre la partie à 0
 
     default:
       return state
