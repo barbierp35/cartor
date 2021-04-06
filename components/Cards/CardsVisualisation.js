@@ -15,6 +15,8 @@ class CardsVisualisation extends React.Component {
   }
 
   nextCard() {
+    if (!this.props.playersReducer.players.length) return;
+    
     this.props.disableCard(this.props.cardsReducer.showedCard)
     this.props.nextCard()
     setTimeout( () => {
