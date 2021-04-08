@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { nextCard, disableCard } from '../../store/actions/CardsAction';
+import { nextCard, disableCard, resetCards } from '../../store/actions/CardsAction';
 import * as Speech from 'expo-speech';
 
 class CardsVisualisation extends React.Component {
@@ -14,6 +14,12 @@ class CardsVisualisation extends React.Component {
     }
   }
 
+  componentDidUpdate(previousProps, previousState) {
+    if (previousProps.cardsReducer.showedCard !== null && this.props.cardsReducer.showedCard === null) {
+      this.setState({imgSrc: require('../../assets/cards/back_card.png')})
+    }
+  }
+
   nextCard() {
     if (!this.props.playersReducer.players.length) return;
     
@@ -22,7 +28,7 @@ class CardsVisualisation extends React.Component {
     setTimeout( () => {
       this.setState({imgSrc: this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['src']})
       Speech.speak(this.props.playersReducer.players[Math.floor(Math.random()*this.props.playersReducer.players.length)] + this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['rule']);
-    }, 500);
+    }, 100);
   }
 
   render() {
@@ -39,15 +45,6 @@ class CardsVisualisation extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginBottom: 10
-  }
-});
-
 const mapStateToProps = (state) => {
   const { cardsReducer, playersReducer } = state
   return { cardsReducer, playersReducer }
@@ -55,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    nextCard, disableCard
+    nextCard, disableCard, resetCards
   }, dispatch)
 );
 

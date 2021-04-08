@@ -1,3 +1,9 @@
+export const resetCards = () => (
+  {
+    type: 'RESET_CARDS'
+  }
+);
+
 export const disableCard = slugCard => (
   {
     type: 'DISABLE_CARD',

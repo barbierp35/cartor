@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
   }
 });
 
-
 const mapStateToProps = (state) => {
   const { players } = state
   return { players }
