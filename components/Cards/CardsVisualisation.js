@@ -27,7 +27,10 @@ class CardsVisualisation extends React.Component {
     this.props.nextCard()
     setTimeout( () => {
       this.setState({imgSrc: this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['src']})
-      Speech.speak(this.props.playersReducer.players[Math.floor(Math.random()*this.props.playersReducer.players.length)] + this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['rule']);
+      if (this.props.configsReducer.sound) {
+        Speech.stop()
+        Speech.speak(this.props.playersReducer.players[Math.floor(Math.random()*this.props.playersReducer.players.length)] + this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['rule']);
+      }
     }, 100);
   }
 
@@ -46,8 +49,8 @@ class CardsVisualisation extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { cardsReducer, playersReducer } = state
-  return { cardsReducer, playersReducer }
+  const { configsReducer, cardsReducer, playersReducer } = state
+  return { configsReducer, cardsReducer, playersReducer }
 };
 
 const mapDispatchToProps = dispatch => (

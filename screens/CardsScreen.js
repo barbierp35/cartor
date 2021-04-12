@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ProgressBar from '../components/Cards/ProgressBar';
 import CardsVisualisation from '../components/Cards/CardsVisualisation';
 import BtnReset from '../components/Cards/BtnReset';
+import BtnSound from '../components/Cards/BtnSound';
 
 class CardsScreen extends React.Component {
   render() {
@@ -11,7 +12,11 @@ class CardsScreen extends React.Component {
       <View style={styles.container}>
         <ProgressBar/>
         <CardsVisualisation/>
-        <BtnReset/>
+
+        <View className="btnList">
+          <BtnReset/>
+          <BtnSound/>
+        </View>
       </View>
     );
   }
@@ -22,6 +27,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  btnList: {
+    flex: 1,
+    flexDirection: 'row'
   }
 });
 
