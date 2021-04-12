@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { disableCard } from '../../store/actions/CardsAction';
@@ -25,7 +25,7 @@ class ProgressBar extends React.Component {
 
   render() {
     return (
-      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <View style={styles.container}>
 				<Progress.Bar progress={this.state.nbCardsUnactive / this.state.nbCards * 1} />
         <Text>{this.state.nbCardsUnactive} / {this.state.nbCards}</Text>
       </View>
@@ -40,6 +40,13 @@ const filterObject = (obj, filter, filterValue) =>
        [val]: obj[val]
    }                                        
 ), {});
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    marginBottom: 10
+  }
+});
 
 const mapStateToProps = (state) => {
   const { cardsReducer } = state

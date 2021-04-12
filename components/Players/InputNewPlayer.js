@@ -22,7 +22,6 @@ class InputNewPlayer extends React.Component {
     return (
       <View>
         <TextInput
-          style={styles.textInputStyle}
           placeholder="Nouveau Joueur"
           value={this.state.newPlayer}
           onChangeText={(text) => this.setState({newPlayer:text})}

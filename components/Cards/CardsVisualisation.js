@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { nextCard, disableCard, resetCards } from '../../store/actions/CardsAction';
@@ -36,7 +36,7 @@ class CardsVisualisation extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <TouchableOpacity onPress={() => this.nextCard()}>
           <Image
             source={this.state.imgSrc}
@@ -47,6 +47,13 @@ class CardsVisualisation extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  }
+});
 
 const mapStateToProps = (state) => {
   const { configsReducer, cardsReducer, playersReducer } = state

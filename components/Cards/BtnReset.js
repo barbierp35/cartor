@@ -7,18 +7,12 @@ import { resetCards } from '../../store/actions/CardsAction';
 class BtnReset extends React.Component {
   render() {
     return (
-      <Button style={styles.button} title="Recommencer" onPress={() => this.props.resetCards()}/>
+      <Button title="Recommencer" onPress={() => this.props.resetCards()}/>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginTop: 10
-  }
 });
 
 const mapStateToProps = (state) => {
