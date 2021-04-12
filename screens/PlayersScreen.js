@@ -13,7 +13,7 @@ class PlayersScreen extends React.Component {
       <View style={styles.container}>
         <HeaderPlayers style={styles.header}/>
         <View style={styles.content}>
-          <Text>{ this.props.playersReducer.players.length } Joueurs</Text>
+          <Text style={styles.title}>{ this.props.playersReducer.players.length } Joueurs</Text>
           <PlayersList/>
           <InputNewPlayer/>
           <View style={styles.hr}/>
@@ -42,7 +42,14 @@ const styles = StyleSheet.create({
     flex: 5,
     padding:20,
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: '80%'
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
   input: {
     height: 40,

@@ -33,12 +33,6 @@ class InputNewPlayer extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginBottom: 10
-  }
 });
 
 const mapStateToProps = (state) => {

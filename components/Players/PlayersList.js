@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { deletePlayer } from '../../store/actions/PlayersAction';
 
 class PlayersList extends React.Component {
   render() {
@@ -15,10 +17,10 @@ class PlayersList extends React.Component {
             />
             <TouchableOpacity
               style={styles.button}
-              // onPress={() => this.props.editConfig({key: 'sound', value: !this.props.configsReducer.sound})}
+              onPress={() => this.props.deletePlayer(element)}
               >
-                <MaterialCommunityIcons name='trash-can-outline' size={24} color="black" />
-              </TouchableOpacity>
+                <MaterialCommunityIcons name='trash-can-outline' size={24} color="red" />
+            </TouchableOpacity>
           </View>
         ))}
       </View>
@@ -28,13 +30,12 @@ class PlayersList extends React.Component {
 
 const styles = StyleSheet.create({
   linePlayer: {
-    width: 100,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    paddingTop: 5,
+    paddingBottom: 5,
   },
   button: {
-    alignItems: 'center',
-    backgroundColor: 'red',
     padding: 0
   }
 });
@@ -45,4 +46,10 @@ const mapStateToProps = (state) => {
   return { playersReducer }
 };
 
-export default connect(mapStateToProps)(PlayersList);
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    deletePlayer
+  }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayersList);

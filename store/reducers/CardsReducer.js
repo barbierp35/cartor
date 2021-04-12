@@ -2,25 +2,25 @@ const INITIAL_STATE = {
   cards: {
     '1C': {
       name: 'As de trèfle',
-      rule: ' donne 1 gorgée',
+      rule: ' donne une gorgée',
       src: require('../../assets/cards/2C.png'),
       active: true
     },
     '1D': {
       name: 'As de carreau',
-      rule: ' boit 1 gorgée',
+      rule: ' boit une gorgée',
       src: require('../../assets/cards/2D.png'),
       active: true
     },
     '1H': {
       name: 'As de coeur',
-      rule: ' boit 1 gorgée',
+      rule: ' boit une gorgée',
       src: require('../../assets/cards/2H.png'),
       active: true
     },
     '1S': {
       name: 'As de pique',
-      rule: ' donne 1 gorgée',
+      rule: ' donne une gorgée',
       src: require('../../assets/cards/2S.png'),
       active: true
     },

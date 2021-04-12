@@ -10,3 +10,10 @@ export const addPlayer = playerName => (
     payload: playerName
   }
 );
+
+export const deletePlayer = playerName => (
+  {
+    type: 'DELETE_PLAYER',
+    payload: playerName
+  }
+);

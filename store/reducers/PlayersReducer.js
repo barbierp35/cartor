@@ -19,7 +19,14 @@ const playersReducer = (state = INITIAL_STATE, action) => {
       }
 
       return newState;
-
+      
+    case 'DELETE_PLAYER':
+        newState = {...state}
+  
+        newState.players = newState.players.filter(item => item !== action.payload)
+  
+        return newState;
+      
     default:
       return state
   }
