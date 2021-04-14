@@ -3,14 +3,18 @@ import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { nextCard, disableCard, resetCards } from '../../store/actions/CardsAction';
+import { nextPlayer } from '../../store/actions/PlayersAction';
 import * as Speech from 'expo-speech';
+import Rule from './Rule';
 
 class CardsVisualisation extends React.Component {
   constructor(props){
     super(props)
 
     this.state = {
-      imgSrc: require('../../assets/cards/back_card.png')
+      imgSrc: require('../../assets/cards/back_card.png'),
+      rule: '',
+      currentPlayer: ''
     }
   }
 
@@ -24,12 +28,16 @@ class CardsVisualisation extends React.Component {
     if (!this.props.playersReducer.players.length) return;
     
     this.props.disableCard(this.props.cardsReducer.showedCard)
+    this.props.nextPlayer()
     this.props.nextCard()
     setTimeout( () => {
       this.setState({imgSrc: this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['src']})
+      this.setState({currentPlayer: this.props.playersReducer.currentPlayer})
+      this.setState({rule: this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['rule']})
+
       if (this.props.configsReducer.sound) {
         Speech.stop()
-        Speech.speak(this.props.playersReducer.players[Math.floor(Math.random()*this.props.playersReducer.players.length)] + this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['rule']);
+        Speech.speak(this.props.playersReducer.currentPlayer + ' pioche une carte ' + this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['number']);
       }
     }, 100);
   }
@@ -40,9 +48,10 @@ class CardsVisualisation extends React.Component {
         <TouchableOpacity onPress={() => this.nextCard()}>
           <Image
             source={this.state.imgSrc}
-            style={{width: 196, height: 300}}
+            style={styles.image}
           />
         </TouchableOpacity>
+        <Rule currentPlayer={this.state.currentPlayer} rule={this.state.rule} />
       </View>
     );
   }
@@ -50,8 +59,14 @@ class CardsVisualisation extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  image: {
+    alignSelf: 'center',
+    width: 196,
+    height: 300
   }
 });
 
@@ -62,7 +77,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    nextCard, disableCard, resetCards
+    nextCard, disableCard, resetCards, nextPlayer
   }, dispatch)
 );
 

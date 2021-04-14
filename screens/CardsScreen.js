@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   btnList: {
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 20
   }
 });

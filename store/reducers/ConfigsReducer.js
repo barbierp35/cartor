@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  sound: true
+  sound: false
 };
 
 const configsReducer = (state = INITIAL_STATE, action) => {

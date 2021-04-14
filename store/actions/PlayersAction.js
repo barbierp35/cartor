@@ -17,3 +17,15 @@ export const deletePlayer = playerName => (
     payload: playerName
   }
 );
+
+export const nextPlayer = () => (
+  {
+    type: 'NEXT_PLAYER'
+  }
+);
+
+export const resetPlayer = () => (
+  {
+    type: 'RESET_PLAYER'
+  }
+);

@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-  players: []
+  players: [],
+  currentPlayer: null
 };
 
 const playersReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +27,32 @@ const playersReducer = (state = INITIAL_STATE, action) => {
         newState.players = newState.players.filter(item => item !== action.payload)
   
         return newState;
+
+    case 'NEXT_PLAYER':
+      newState = {...state}
+    
+      if (newState.currentPlayer === null) {
+        newState.currentPlayer = newState.players[0]
+
+        return newState;
+      }
+      
+      if (newState.players[newState.players.indexOf(newState.currentPlayer) + 1] !== undefined) {
+        newState.currentPlayer = newState.players[newState.players.indexOf(newState.currentPlayer) + 1]
+
+        return newState;
+      }
+
+      newState.currentPlayer = newState.players[0]
+
+      return newState;
+
+    case 'RESET_PLAYER':
+      newState = {...state}
+
+      newState.currentPlayer = null
+
+      return newState;
       
     default:
       return state

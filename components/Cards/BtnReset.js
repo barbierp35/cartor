@@ -3,11 +3,17 @@ import { StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { resetCards } from '../../store/actions/CardsAction';
+import { resetPlayer } from '../../store/actions/PlayersAction';
 
 class BtnReset extends React.Component {
+  resetGame() {
+    this.props.resetCards()
+    this.props.resetPlayer()
+  }
+
   render() {
     return (
-      <Button title="Recommencer" onPress={() => this.props.resetCards()}/>
+      <Button title="Recommencer" onPress={() => this.resetGame()}/>
     );
   }
 }
@@ -22,7 +28,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    resetCards
+    resetCards, resetPlayer
   }, dispatch)
 );
 
