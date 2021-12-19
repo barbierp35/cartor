@@ -23,7 +23,7 @@ class PlayersScreen extends React.Component {
                 this.props.dumpPlayers()
               }
             >
-            <Text>X RESET</Text>
+            <Text>Réinitialiser</Text>
           </TouchableOpacity>
         </View>
       </View>

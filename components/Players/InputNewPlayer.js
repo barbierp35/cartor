@@ -26,7 +26,7 @@ class InputNewPlayer extends React.Component {
           value={this.state.newPlayer}
           onChangeText={(text) => this.setState({newPlayer:text})}
         />
-        <Button style={styles.button} title="Add" onPress={() => this.createPlayer()}/>
+        <Button style={styles.button} title="Ajouter" onPress={() => this.createPlayer()}/>
       </View>
     );
   }
