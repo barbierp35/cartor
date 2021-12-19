@@ -37,7 +37,8 @@ class CardsVisualisation extends React.Component {
 
       if (this.props.configsReducer.sound) {
         Speech.stop()
-        Speech.speak(this.props.playersReducer.currentPlayer + ' pioche une carte ' + this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['number']);
+        const determining = this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['number'] === 'Dame' ? 'une' : 'un';
+        Speech.speak(this.props.playersReducer.currentPlayer + ' pioche ' + determining + ' ' + this.props.cardsReducer.cards[this.props.cardsReducer.showedCard]['number']);
       }
     }, 100);
   }
